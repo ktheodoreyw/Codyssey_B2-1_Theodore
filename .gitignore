@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# 개인 데이터는 커밋하지 않는다 (디렉터리 구조만 .gitkeep 으로 유지)
+data/*
+!data/.gitkeep
+backups/*
+!backups/.gitkeep
+
+# VS Code 개인 설정 (공유용 설정만 남김)
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+
+# 내보내기 결과물
+*.csv
+!samples/*.csv

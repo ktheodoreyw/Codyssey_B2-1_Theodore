@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ledger: summary (현재 달)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "args": ["summary", "--month", "2026-10"],
+      "console": "integratedTerminal",
+      "env": { "LEDGER_DEBUG": "1" }
+    },
+    {
+      "name": "ledger: 임의 명령 입력",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "args": "${input:ledgerArgs}",
+      "console": "integratedTerminal",
+      "env": { "LEDGER_DEBUG": "1" }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ledgerArgs",
+      "type": "promptString",
+      "description": "예: list --month 2026-10",
+      "default": "list"
+    }
+  ]
+}
