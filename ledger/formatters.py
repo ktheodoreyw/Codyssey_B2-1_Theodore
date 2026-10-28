@@ -1,15 +1,3 @@
-"""
-formatters.py — 콘솔 출력 포맷(테이블 정렬, 금액 표기)
-
-[보너스 기능: 출력 포맷 테이블 정렬]
-- 문제: 한글은 터미널에서 영문 2글자 폭을 차지한다.
-        len("식비") == 2 이지만 화면 폭은 4 → str.ljust 로 맞추면 열이 어긋난다.
-- 해결: unicodedata.east_asian_width 로 글자마다 화면 폭(1 또는 2)을 계산해
-        "보이는 폭" 기준으로 패딩한다.
-- 숫자 열은 오른쪽 정렬 + 천 단위 쉼표, 문자 열은 왼쪽 정렬.
-- 너무 긴 메모는 max_width 에서 잘라 '…' 를 붙여 표가 흐트러지지 않게 한다.
-"""
-
 from __future__ import annotations
 
 import unicodedata

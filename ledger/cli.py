@@ -1,21 +1,3 @@
-"""
-cli.py — 명령줄 인터페이스(인자 파싱 + 결과 출력)
-
-[이 모듈의 책임]
-- argparse 로 명령/옵션을 해석해 services 계층의 메서드를 호출하고,
-  돌아온 값을 formatters 로 예쁘게 출력한다.
-- 업무 규칙은 전혀 담지 않는다 (예산 초과 판정, 중복 검사 등은 services 담당).
-- 모든 핸들러는 @handle_errors 로 감싸져 있어 예외 → 메시지/힌트/종료코드 로 변환된다.
-
-[명령 요약]
-  add / list / search / summary / export / import / update / delete   … 기본 8개
-  category add|list|remove                                            … 기본 9번째
-  budget set|list                                                     … 기본 10번째
-  backup create|list|restore                                          … 보너스(백업)
-  recurring add|list|apply|remove                                     … 보너스(반복 내역)
-  (모든 목록 출력은 보너스 '테이블 정렬' 을 적용)
-"""
-
 from __future__ import annotations
 
 import argparse

@@ -1,23 +1,3 @@
-"""
-services.py — 업무 규칙(비즈니스 로직) 계층
-
-[이 모듈의 책임]
-- "가계부로서 지켜야 할 규칙" 을 구현한다.
-    예) 없는 카테고리로 거래를 추가할 수 없다 / 사용 중인 카테고리는 함부로 지울 수 없다 /
-        예산 사용률은 어떻게 계산한다 / 반복 거래는 한 달에 한 번만 생성한다
-- 파일 입출력은 storage.JsonlStore 에, 데이터 검증은 models 에 맡기고
-  이 모듈은 두 계층을 "조합" 만 한다.
-- 콘솔 출력(print)을 하지 않는다 → 결과를 값으로 반환하고, 출력은 cli.py 가 담당.
-  (그래서 단위 테스트에서 print 를 가로채지 않고도 결과를 검증할 수 있다.)
-
-[클래스 책임 경계 — 평가 항목 2]
-  TransactionService : 거래 CRUD + 검색/집계 + CSV 교환
-  CategoryService    : 카테고리 목록 관리 + "사용 중" 판정 + 재할당 삭제
-  BudgetService      : 월별 예산 저장 + 사용률 계산
-  RecurringService   : 반복 규칙 저장 + 월 단위 거래 생성
-  LedgerApp          : 위 서비스들이 공유하는 저장소를 한 번만 만들어 묶어 주는 조립(assembly) 역할
-"""
-
 from __future__ import annotations
 
 import calendar

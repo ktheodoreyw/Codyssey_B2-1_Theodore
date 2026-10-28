@@ -1,14 +1,3 @@
-"""
-models.py — 도메인 데이터 모델 (거래 / 카테고리 / 예산 / 반복 규칙)
-
-[설계 의도]
-- "데이터의 모양"과 "데이터가 유효한지 검사하는 규칙"을 이 파일 한 곳에 모은다.
-  → storage.py 는 저장만, services.py 는 업무 흐름만 담당하도록 책임을 분리.
-- @dataclass 를 사용해 생성자·repr·비교 연산을 자동 생성하고,
-  모든 필드에 타입 힌트를 붙여 IDE 자동완성과 정적 검사(mypy/pyright)가 가능하게 한다.
-- 각 모델은 to_dict() / from_dict() 를 제공해 JSONL 한 줄(dict) 과 1:1 로 변환된다.
-"""
-
 from __future__ import annotations
 
 import re

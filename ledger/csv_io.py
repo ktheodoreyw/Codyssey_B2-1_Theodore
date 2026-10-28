@@ -1,21 +1,3 @@
-"""
-csv_io.py — CSV 내보내기(export) / 가져오기(import)
-
-[CSV 스키마 (고정)]
-- 인코딩  : UTF-8 (BOM 없음)  ※ Excel 에서 열 때 한글이 깨지면 "데이터 > 텍스트 가져오기" 로 UTF-8 지정
-- 헤더    : id,date,type,category,amount,memo   (순서 고정, 모두 소문자)
-- 구분자  : 쉼표(,)  / 메모에 쉼표·줄바꿈이 있으면 csv 모듈이 자동으로 "..." 로 감싼다.
-- 줄바꿈  : LF 또는 CRLF 모두 읽을 수 있음(csv 모듈 newline="" 처리)
-
-[import 시 깨진 행 처리 — 평가 항목 4]
-- 행마다 독립적으로 검증하여 "정상 행 목록"과 "오류 행 보고서"를 분리한다.
-- 모드:
-    partial(기본) : 정상 행만 저장하고, 오류 행은 줄 번호·원인과 함께 리포트로 출력
-    strict        : 오류가 1건이라도 있으면 아무것도 저장하지 않고 종료(롤백)
-- 어느 모드든 저장 자체는 services.py 가 write_all(원자적) 로 한 번에 수행하므로
-  "절반만 들어간 상태" 는 발생하지 않는다.
-"""
-
 from __future__ import annotations
 
 import csv
