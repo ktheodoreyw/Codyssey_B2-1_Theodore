@@ -2,30 +2,27 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ledger: summary (현재 달)",
+      "name": "budget_app: add (대화형)",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/main.py",
-      "args": ["summary", "--month", "2026-10"],
+      "module": "budget_app",
+      "args": ["add"],
       "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
       "env": { "LEDGER_DEBUG": "1" }
     },
     {
-      "name": "ledger: 임의 명령 입력",
+      "name": "budget_app: 임의 명령 입력",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/main.py",
-      "args": "${input:ledgerArgs}",
+      "module": "budget_app",
+      "args": "${input:appArgs}",
       "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
       "env": { "LEDGER_DEBUG": "1" }
     }
   ],
   "inputs": [
-    {
-      "id": "ledgerArgs",
-      "type": "promptString",
-      "description": "예: list --month 2026-10",
-      "default": "list"
-    }
+    { "id": "appArgs", "type": "promptString", "description": "예: list -limit 5", "default": "list" }
   ]
 }

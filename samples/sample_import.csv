@@ -1,5 +1,5 @@
-id,date,type,category,amount,memo
-,2026-10-03,expense,식비,8500,아침 김밥
-,2026-10-03,expense,교통,1550,버스
-,2026-10-05,income,급여,2800000,10월 급여
-,2026-10-07,expense,식비,32000,"회식, 2차 커피"
+date,type,category,amount,memo,tags
+2026-10-03,expense,식비,8500,아침 김밥,아침
+2026-10-03,expense,교통,1550,버스,출근
+2026-10-05,income,급여,2800000,10월 급여,
+2026-10-07,expense,식비,32000,"회식, 2차 커피","회식,커피"

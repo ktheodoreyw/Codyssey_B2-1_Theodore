@@ -1,3 +1,15 @@
+"""
+formatters.py — 콘솔 출력 포맷(테이블 정렬, 금액 표기)
+
+[보너스 기능: 출력 포맷 테이블 정렬]
+- 문제: 한글은 터미널에서 영문 2글자 폭을 차지한다.
+        len("식비") == 2 이지만 화면 폭은 4 → str.ljust 로 맞추면 열이 어긋난다.
+- 해결: unicodedata.east_asian_width 로 글자마다 화면 폭(1 또는 2)을 계산해
+        "보이는 폭" 기준으로 패딩한다.
+- 숫자 열은 오른쪽 정렬 + 천 단위 쉼표, 문자 열은 왼쪽 정렬.
+- 너무 긴 메모는 max_width 에서 잘라 '…' 를 붙여 표가 흐트러지지 않게 한다.
+"""
+
 from __future__ import annotations
 
 import unicodedata
@@ -62,14 +74,17 @@ def render_table(
         ])
 
     ncol = len(headers)
+    resolved: list[Align]
     if aligns is None:
-        # 열에 숫자가 하나라도 있으면 오른쪽 정렬 (첫 번째 행 기준 추정)
-        aligns = ["left"] * ncol
+        # 정렬이 지정되지 않으면 첫 행을 보고 숫자 열은 오른쪽, 나머지는 왼쪽으로 추정
+        resolved = ["left"] * ncol
         if str_rows:
             for i in range(ncol):
                 sample = str_rows[0][i].replace(",", "").replace("-", "").replace("+", "").replace("%", "")
                 if sample.strip().isdigit():
-                    aligns[i] = "right"
+                    resolved[i] = "right"
+    else:
+        resolved = list(aligns)
 
     widths = [display_width(h) for h in headers]
     for r in str_rows:
@@ -77,9 +92,9 @@ def render_table(
             widths[i] = max(widths[i], display_width(cell))
 
     sep = "-+-".join("-" * w for w in widths)
-    lines = [" | ".join(pad(h, widths[i], aligns[i]) for i, h in enumerate(headers)), sep]
+    lines = [" | ".join(pad(h, widths[i], resolved[i]) for i, h in enumerate(headers)), sep]
     for r in str_rows:
-        lines.append(" | ".join(pad(c, widths[i], aligns[i]) for i, c in enumerate(r)))
+        lines.append(" | ".join(pad(c, widths[i], resolved[i]) for i, c in enumerate(r)))
     if not str_rows:
         lines.append("(0건)")
     return "\n".join(lines)
